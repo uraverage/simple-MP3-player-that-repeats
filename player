@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3 Player</title>
+    <style>
+        body {
+            background: #1e1e1e;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: #b00020;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        input {
+            margin-top: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload and Play MP3</h2>
+        <input type="file" id="fileInput" accept="audio/mp3">
+        <audio id="audioPlayer" controls loop></audio>
+    </div>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const objectURL = URL.createObjectURL(file);
+                const audioPlayer = document.getElementById('audioPlayer');
+                audioPlayer.src = objectURL;
+                audioPlayer.play();
+            }
+        });
+    </script>
+</body>
+</html>
